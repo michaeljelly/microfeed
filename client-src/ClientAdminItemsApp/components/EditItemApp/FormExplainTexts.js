@@ -1,4 +1,4 @@
-import {ITEM_STATUSES_DICT} from "../../../../common-src/Constants";
+import { ITEM_STATUSES_DICT } from "../../../../common-src/Constants";
 
 export const ITEM_CONTROLS = {
   TITLE: 'item_title',
@@ -6,6 +6,7 @@ export const ITEM_CONTROLS = {
   MEDIA_FILE: 'item_media_file',
   PUB_DATE: 'item_pub_date',
   LINK: 'item_link',
+  META_DESCRIPTION: 'item_meta_description',
   DESCRIPTION: 'item_description',
   GUID: 'item_guid',
   ITUNES_EXPLICIT: 'item_itunes_explicit',
@@ -62,6 +63,13 @@ export const CONTROLS_TEXTS_DICT = {
     text: "An item's web link. By default, it's a web page on your microfeed. But you can set it to fit your use case.",
     rss: '<channel><item><link>https://example.com/page1.html</link></item></channel>',
     json: '{ "items": [{"url": "https://example.com/page1.html"}] }',
+  },
+  [ITEM_CONTROLS.META_DESCRIPTION]: {
+    linkName: 'Meta-Description',
+    modalTitle: 'Meta-Description',
+    text: "An item's meta description for SEO. It should be a short and concise summary of the item's content.",
+    rss: '<channel><item><description><![CDATA[<p>some text here<br></p>]]></description></item></channel>',
+    json: '{ "items": [{"content_html": "<p>some text here<br></p>", "content_text": "some text here"}] }',
   },
   [ITEM_CONTROLS.DESCRIPTION]: {
     linkName: 'Description',
