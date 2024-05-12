@@ -5,11 +5,11 @@ import {
   secondsToHHMMSS,
   htmlToPlainText
 } from "../../common-src/StringUtils";
-import {humanizeMs, msToRFC3339} from "../../common-src/TimeUtils";
-import {ENCLOSURE_CATEGORIES, ITEM_STATUSES_DICT, STATUSES} from "../../common-src/Constants";
-import {isValidMediaFile} from "../../common-src/MediaFileUtils";
+import { humanizeMs, msToRFC3339 } from "../../common-src/TimeUtils";
+import { ENCLOSURE_CATEGORIES, ITEM_STATUSES_DICT, STATUSES } from "../../common-src/Constants";
+import { isValidMediaFile } from "../../common-src/MediaFileUtils";
 
-const {MICROFEED_VERSION} = require('../../common-src/Version');
+const { MICROFEED_VERSION } = require('../../common-src/Version');
 
 export default class FeedPublicJsonBuilder {
   constructor(content, baseUrl, request, forOneItem = false) {
@@ -72,8 +72,8 @@ export default class FeedPublicJsonBuilder {
     }
 
     if (this.webGlobalSettings.favicon && this.webGlobalSettings.favicon.url) {
-        publicContent['favicon'] = urlJoinWithRelative(
-          this.publicBucketUrl, this.webGlobalSettings.favicon.url, this.baseUrl);
+      publicContent['favicon'] = urlJoinWithRelative(
+        this.publicBucketUrl, this.webGlobalSettings.favicon.url, this.baseUrl);
     }
 
     if (channel.publisher) {
@@ -94,7 +94,7 @@ export default class FeedPublicJsonBuilder {
 
   _buildPublicContentMicrofeedExtra(publicContent) {
     const channel = this.content.channel || {};
-    const subscribeMethods = this.settings.subscribeMethods || {'methods': []};
+    const subscribeMethods = this.settings.subscribeMethods || { 'methods': [] };
     const microfeedExtra = {
       microfeed_version: MICROFEED_VERSION,
       base_url: this.baseUrl,
@@ -225,6 +225,9 @@ export default class FeedPublicJsonBuilder {
         newItem['attachments'] = [attachment];
       }
     }
+    if (item.meta_description) {
+      newItem['meta_description'] = item.meta_description;
+    }
     if (item.link) {
       newItem['url'] = item.link;
     }
@@ -286,7 +289,7 @@ export default class FeedPublicJsonBuilder {
       ...this._buildPublicContentChannel(this.content),
     };
 
-    const {items} = this.content;
+    const { items } = this.content;
     const existingitems = items || [];
     publicContent['items'] = [];
     existingitems.forEach((item) => {
