@@ -1,5 +1,5 @@
-import {randomShortUUID, removeHostFromUrl} from "../../common-src/StringUtils";
-import {ENCLOSURE_CATEGORIES, ENCLOSURE_CATEGORIES_DICT, LANGUAGE_CODES_LIST} from "../../common-src/Constants";
+import { randomShortUUID, removeHostFromUrl } from "../../common-src/StringUtils";
+import { ENCLOSURE_CATEGORIES, ENCLOSURE_CATEGORIES_DICT, LANGUAGE_CODES_LIST } from "../../common-src/Constants";
 
 const LANGUAGE_CODES = LANGUAGE_CODES_LIST.map((lc) => lc.code);
 
@@ -22,8 +22,8 @@ export default class FeedCrudManager {
     }
 
     if (item.attachment &&
-        ENCLOSURE_CATEGORIES_DICT[item.attachment.category] &&
-        item.attachment.url) {
+      ENCLOSURE_CATEGORIES_DICT[item.attachment.category] &&
+      item.attachment.url) {
       const mediaFile = {};
       if (item.attachment.category) {
         mediaFile.category = item.attachment.category;
@@ -52,6 +52,9 @@ export default class FeedCrudManager {
 
     if (item.content_html) {
       internalSchema.description = item.content_html;
+    }
+    if (item.meta_description) {
+      internalSchema.meta_description = item.meta_description;
     }
 
     if (item.image) {
